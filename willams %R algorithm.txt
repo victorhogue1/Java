@@ -1,0 +1,45 @@
+https://en.wikipedia.org/wiki/Williams_%25R
+
+Williams used a 10 trading day period and considered values below -80 as oversold and above -20 as overbought. But they were not to be traded directly, instead his rule to buy an oversold was
+
+ %R reaches -100%.
+Five trading days pass since -100% was last reached
+ %R fall below -95% or -85%.
+
+or conversely 
+
+to sell an overbought condition %R reaches 0%.
+
+Five trading days pass since 0% was last reached
+ %R rise above -5% or -15%.
+
+The timeframe can be changed for either more sensitive or smoother results. The more sensitive you make it, though, the more false signals you will get.
+
+
+Code:
+
+double calcPercentR(int n, collection daySummary)
+{
+
+  int n = 10;
+  double percentR = 0, high = 0, low = 0;
+  high = daySummary(0).high;
+  low = daySummary(0).low;
+  
+  // Find the max and min stock price for the last n days
+  for (int i = 1; i < n; i++)
+  {
+    if daysummary(i).high > high
+      { high = daysummary.high(i);}
+    if daysummary(i).low < low
+      { low = daysummary.low(i);}
+  }  
+
+  // Calculate the %R 
+  // Note: daySummary.close(0) is the close price for today
+
+  
+  percentR = (high-daySummary.close(0))/(high-low)*(-100);
+
+  return(percentR);
+}
